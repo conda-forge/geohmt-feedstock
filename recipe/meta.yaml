@@ -10,21 +10,23 @@ source:
   sha256: 7b68bc2a255ce17be4f3b4279ebc83244e926e1b8d17672c9ffe6171b005a59b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python {{ python_min }}
   run:
     - ipyleaflet
     - folium
     - pyshp
-    - python >=3.8
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - geohmt
 
